@@ -1,0 +1,224 @@
+\documentclass[letterpaper]{article}
+\usepackage[legalpaper, left=1 cm, right=1cm, top=0.5cm, bottom=0.5cm] {geometry}
+\date{} % Remove a exibição da data
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{hyperref} % Para criar links
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    language=HTML, % Use 'HTML' para a linguagem HTML
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    stringstyle=\color{codepurple},
+    commentstyle=\color{blue}\itshape,
+    numbers=left,
+    numberstyle=\tiny\color{orange},
+    breaklines=true,
+    showstringspaces=false,
+}
+
+\lstdefinestyle{pythonStyle}{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    stringstyle=\color{orange},
+    commentstyle=\color{orange}\itshape,
+    numbers=left,
+    numberstyle=\tiny\color{blue},
+    breaklines=true,
+    showstringspaces=false,
+}
+
+\lstdefinestyle{pythonStyle-on}{
+    language=Python,
+    basicstyle=\ttfamily\small\color{green},
+    keywordstyle=\color{green},
+    stringstyle=\color{green},
+    commentstyle=\color{green}\itshape,
+    numbers=left,
+    numberstyle=\tiny\color{green},
+    breaklines=true,
+    showstringspaces=false,
+}
+
+\lstdefinestyle{pythonStyle-off}{
+    language=Python,
+    basicstyle=\ttfamily\small\color{red},
+    keywordstyle=\color{red},
+    stringstyle=\color{red},
+    commentstyle=\color{red}\itshape,
+    numbers=left,
+    numberstyle=\tiny\color{red},
+    breaklines=true,
+    showstringspaces=false,
+}
+
+
+% Define o estilo para HTML
+\lstdefinestyle{htmlStyle}{
+    language=python,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    stringstyle=\color{orange},
+    commentstyle=\color{blue}\itshape,
+    numbers=left,
+    numberstyle=\tiny\color{orange},
+    breaklines=true,
+    showstringspaces=false,
+}
+
+\lstdefinestyle{htmlStyle-on}{
+    language=python,
+    basicstyle=\ttfamily\small\color{green},
+    keywordstyle=\color{green},
+    stringstyle=\color{green},
+    commentstyle=\color{green}\itshape,
+    numbers=left,
+    numberstyle=\tiny\color{green},
+    breaklines=true,
+    showstringspaces=false,
+}
+
+\lstdefinestyle{htmlStyle-off}{
+    language=python,
+    basicstyle=\ttfamily\small\color{red},
+    keywordstyle=\color{red},
+    stringstyle=\color{red},
+    commentstyle=\color{red}\itshape,
+    numbers=left,
+    numberstyle=\tiny\color{red},
+    breaklines=true,
+    showstringspaces=false,
+}
+
+
+\lstdefinestyle{cssStyle}{
+    language=HTML,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    stringstyle=\color{green},
+    commentstyle=\color{blue}\itshape,
+    numbers=left,
+    numberstyle=\tiny\color{green},
+    breaklines=true,
+    showstringspaces=false,
+}
+
+\lstdefinestyle{cssStyle-off}{
+    language=HTML,
+    basicstyle=\ttfamily\small\color{red},
+    keywordstyle=\color{red},
+    stringstyle=\color{red},
+    commentstyle=\color{red}\itshape,
+    numbers=left,
+    numberstyle=\tiny\color{red},
+    breaklines=true,
+    showstringspaces=false,
+}
+
+\lstdefinestyle{cssStyle-on}{
+    language=HTML,
+    basicstyle=\ttfamily\small\color{green},
+    keywordstyle=\color{green},
+    stringstyle=\color{green},
+    commentstyle=\color{green}\itshape,
+    numbers=left,
+    numberstyle=\tiny\color{green},
+    breaklines=true,
+    showstringspaces=false,
+}
+
+\lstset{style=mystyle}
+\title{\textbf{download_app/doc}}
+\begin{document}
+\maketitle
+
+\section{Interface user}
+\begin{lstlisting}[style=pythonStyle, title= Interface do usuario ] 
+from tkinter import *
+from tkinter import filedialog
+
+root = Tk()
+root.title("Video Downloader")
+canvas = Canvas(root, width=400, height = 300)
+canvas.pack()
+
+
+#App label
+app_label = Label(root, text="Video Downloader", fg="blue", font =("Arial", 30))
+canvas.create_window(200, 20, window=app_label)
+
+# entry to accept video url
+url_label=Label(root,text="Enter video URL")
+url_entry =Entry(root)
+canvas.create_window(200, 80, window=url_label)
+canvas.create_window(200, 100, window=url_entry)
+
+root.mainloop()
+\end{lstlisting}
+\section{Button}
+\begin{lstlisting}[style=pythonStyle, title=line 20 for 28 ]
+
+#Path to download videos
+path_label = Label(root, text = "Select path to download")
+path_button =Button(root, text = "Select")#Path to download videos
+path_label = Label(root, text = "Select path to download")
+path_button =Button(root, text = "Select")
+canvas.create_window(200, 150, window=path_label)
+canvas.create_window(200, 170, window=path_button)
+
+#download Button
+download_button =Button(root, text='Download')
+canvas.create_window(200, 250, window=download_button)
+\end{lstlisting}
+
+\section{Função de para path do computador}
+\begin{lstlisting}[style=pythonStyle, title=linha 15 a 17 ] 
+    def get_path():
+    path =filedialog.askdirectory()
+    path_label.config(text =path)
+\end{lstlisting}
+
+\section{Função para download}
+
+\begin{lstlisting}[style=pythonStyle, title= 7 a 12] 
+    def download():
+        video_path =url_entry.get()
+        file_path = path_label.cget("text")
+        mp4 = YouTube(video_path).streams.get_highest_resolution().download()
+        video_clip = VideoFileClip(mp4)
+        video_clip.close()
+\end{lstlisting}
+
+\section{Movendo video para uma pasta externa }
+\begin{lstlisting}[style=mystyle, title= ] 
+    def download():
+    video_path =url_entry.get()
+    file_path = path_label.cget("text")
+    print('Downloading ..')
+    mp4 = YouTube(video_path).streams.get_highest_resolution().download()
+    video_clip = VideoFileClip(mp4)
+    video_clip.close()
+    shutil.move(mp4, file_path)
+    print("download complete")
+\end{lstlisting}
+
+\section{Final Code}
+\lstinputlisting[title=demo.py]{demo.py}
+
+
+\end{document}
+\section{Movendo video para uma pasta externa }
+\begin{lstlisting}[style=mystyle, title= ] 
+    
+\end{lstlisting}
+\lstinputlisting[title=aula03.html]{aulas/aula03.html}
+
